@@ -5,6 +5,8 @@
         <meta name='viewport' content='initial-scale=1.0'>
         <meta charset='utf-8'>
         <link href='/public/style.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <script src='/public/bundle.js' defer></script>
     </head>
     <body style='background-color: lightblue'>
@@ -14,11 +16,20 @@
           var map;
           function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: -34.397, lng: 150.644},
-              zoom: 8
+              center: new google.maps.LatLng(40.705132, -74.009258),
+              mapTypeId: google.maps.MapTypeId.ROADMAP,
+              zoom: 12
             });
+            var t = new Date().getTime();
+            var waqiMapOverlay = new google.maps.ImageMapType({
+                getTileUrl: function(coord, zoom) {
+                    return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + '/' + coord.x + '/' + coord.y + '.png?token=<%=AIR_QUALITY_INDEX_KEY%>';
+                },
+                name: 'Air Quality',
+            })
+            map.overlayMapTypes.insertAt(0, waqiMapOverlay);
           }
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_API_KEY%>&callback=initMap" async defer></script>
     </body>
 </html>
