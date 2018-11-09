@@ -11,7 +11,8 @@
     </head>
     <body style='background-color: lightblue'>
         <div id='root'></div>
-        <div id="map"></div>
+        <div id='map'></div>
+        <div id='legend'><h3>Legend (Customize)</h3></div>
         <script>
           var map;
           function initMap() {
@@ -20,6 +21,7 @@
               mapTypeId: google.maps.MapTypeId.ROADMAP,
               zoom: 12
             });
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
             var t = new Date().getTime();
             var waqiMapOverlay = new google.maps.ImageMapType({
                 getTileUrl: function(coord, zoom) {
