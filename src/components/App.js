@@ -7,6 +7,7 @@ class App extends Component {
             <Fragment>
                 <hr/>
                 <Button variant='contained' color='primary'>Test</Button>
+                <img src='../../public/airQualityLevels.png' alt='Air Quality Levels Guide'/>
             </Fragment>
         )
     }
