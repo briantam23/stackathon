@@ -11,69 +11,28 @@
     </head>
     <body style='background-color: lightblue'>
         <div id='root'></div>
-        <div id="locationField">
-            <input id="autocomplete" placeholder="Enter a city" type="text" />
-        </div>
         <div id='map'></div>
         <!-- <div id='legend'>
             <h3>Legend (Customize)</h3>
             <img src='/public/aqiLegend.png' alt='AQI Legend'/>
         </div> -->
-        <script>
+        <script defer>
           let map, infoWindow; 
           let marker = null;
           const markerIcon = 'https://developers.google.com/maps/documentation/javascript/images/marker_greenA.png';
           function initMap() {
+
             // Map
             map = new google.maps.Map(document.getElementById('map'), {
-              center: new google.maps.LatLng(40.7048, 73.6501),
+              center: new google.maps.LatLng(40.7048, -73.6501),
               mapTypeId: google.maps.MapTypeId.ROADMAP,
               zoom: 10
-            });
-            // Legend
-            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
-            var t = new Date().getTime();
-            // Air Quality
-            var waqiMapOverlay = new google.maps.ImageMapType({
-                getTileUrl: function(coord, zoom) {
-                    return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + '/' + coord.x + '/' + coord.y + '.png?token=<%=AIR_QUALITY_INDEX_KEY%>';
-                },
-                name: 'Air Quality',
             })
-            map.overlayMapTypes.insertAt(0, waqiMapOverlay);
-            // Try HTML5 geolocation.
-            infoWindow = new google.maps.InfoWindow;
-            if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function(position) {
-                    var pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
 
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found!');
-                    infoWindow.open(map);
-                    map.setCenter(pos);
-                }, 
-                function() {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                })
-            } 
-            // Browser doesn't support Geolocation 
-            else handleLocationError(false, infoWindow, map.getCenter());
-            // Handle Location Error
-            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-                infoWindow.setPosition(pos);
-                infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
-                infoWindow.open(map);
-            }
             // Autocomplete
             autocomplete = new google.maps.places.Autocomplete(
                 document.getElementById('autocomplete'), 
-                { types: ['(cities)'] }
+                { types: ['geocode'] }
             )
             autocomplete.addListener('place_changed', onPlaceChanged);
 
@@ -95,6 +54,49 @@
                 } 
                 else document.getElementById('autocomplete').placeholder = 'Enter a city';
             }
+
+            // Legend
+            map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
+            //var t = new Date().getTime();
+            
+            // Air Quality
+            var waqiMapOverlay = new google.maps.ImageMapType({
+                getTileUrl: function(coord, zoom) {
+                    return 'https://tiles.waqi.info/tiles/usepa-aqi/' + zoom + '/' + coord.x + '/' + coord.y + '.png?token=<%=AIR_QUALITY_INDEX_KEY%>';
+                },
+                name: 'Air Quality',
+            })
+            map.overlayMapTypes.insertAt(0, waqiMapOverlay);
+
+            // HTML5 geolocation.
+            infoWindow = new google.maps.InfoWindow;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+
+                        infoWindow.setPosition(pos);
+                        infoWindow.setContent('Location found!');
+                        infoWindow.open(map);
+                        map.setCenter(pos);
+                    }, 
+                    function() {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    })
+                } 
+            else handleLocationError(false, infoWindow, map.getCenter());
+
+            function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+                infoWindow.setPosition(pos);
+                infoWindow.setContent(browserHasGeolocation ?
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
+                infoWindow.open(map);
+            }
+
             // Set Marker
             function search() {
                 var search = { bounds: map.getBounds() };
@@ -122,8 +124,9 @@
                     marker.setMap(map);
                     marker.setAnimation(google.maps.Animation.BOUNCE);
                     marker.addListener('click', toggleBounce);
-                };
+                }
             }
+
             // Bias results towards geolocation
             function geolocate() {
                 if (navigator.geolocation) {
