@@ -20,15 +20,15 @@
             <img src='/public/aqiLegend.png' alt='AQI Legend'/>
         </div> -->
         <script>
-          var map, infoWindow; 
-          var marker = null;
-          var markerIcon = 'https://developers.google.com/maps/documentation/javascript/images/marker_greenA.png';
+          let map, infoWindow; 
+          let marker = null;
+          const markerIcon = 'https://developers.google.com/maps/documentation/javascript/images/marker_greenA.png';
           function initMap() {
             // Map
             map = new google.maps.Map(document.getElementById('map'), {
-              center: new google.maps.LatLng(40.705132, -74.009258),
+              center: new google.maps.LatLng(40.7048, 73.6501),
               mapTypeId: google.maps.MapTypeId.ROADMAP,
-              zoom: 12
+              zoom: 10
             });
             // Legend
             map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(document.getElementById('legend'));
@@ -44,84 +44,84 @@
             // Try HTML5 geolocation.
             infoWindow = new google.maps.InfoWindow;
             if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-                };
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
 
-                infoWindow.setPosition(pos);
-                infoWindow.setContent('Location found.');
-                infoWindow.open(map);
-                map.setCenter(pos);
-            }, function() {
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found!');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                }, 
+                function() {
                     handleLocationError(true, infoWindow, map.getCenter());
-                });
+                })
             } 
-            else {
-            // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
+            // Browser doesn't support Geolocation 
+            else handleLocationError(false, infoWindow, map.getCenter());
+            // Handle Location Error
             function handleLocationError(browserHasGeolocation, infoWindow, pos) {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(browserHasGeolocation ?
-                                    'Error: The Geolocation service failed.' :
-                                    'Error: Your browser doesn\'t support geolocation.');
+                    'Error: The Geolocation service failed.' :
+                    'Error: Your browser doesn\'t support geolocation.');
                 infoWindow.open(map);
             }
             // Autocomplete
             autocomplete = new google.maps.places.Autocomplete(
-                (document.getElementById('autocomplete')), 
-                {
-                    types: ['(cities)']
-                });
-                places = new google.maps.places.PlacesService(map);
+                document.getElementById('autocomplete'), 
+                { types: ['(cities)'] }
+            )
+            autocomplete.addListener('place_changed', onPlaceChanged);
 
-                autocomplete.addListener('place_changed', onPlaceChanged);
+            // On Place Change
+            places = new google.maps.places.PlacesService(map);
+
             function onPlaceChanged() {
                 var place = autocomplete.getPlace();
                 if (place.geometry) {
                     map.panTo(place.geometry.location);
-                    map.setZoom(12);
+                    map.setZoom(10);
                     search();
                     // Marker
                     marker = new google.maps.Marker({
                         position: place.geometry.location,
-                        //animation: google.maps.Animation.DROP,
                         icon: markerIcon
                     });
                     setTimeout(dropMarker(), 100);
                 } 
-                else {
-                    document.getElementById('autocomplete').placeholder = 'Enter a city';
-                }
+                else document.getElementById('autocomplete').placeholder = 'Enter a city';
             }
             // Set Marker
             function search() {
-                var search = {
-                    bounds: map.getBounds(),
-                }
+                var search = { bounds: map.getBounds() };
                 clearMarker();
                 places.nearbySearch(search, function(place, status) {
-                    if (status === google.maps.places.PlacesServiceStatus.OK) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry) {
                         marker = new google.maps.Marker({
                             position: place.geometry.location,
-                            animation: google.maps.Animation.DROP,
                             icon: markerIcon
                         });
-                        setTimeout(dropMarker(), 1000);
-                        }
-                    })
+                        dropMarker();
+                    }
+                })
+            }
+            function toggleBounce() {
+                if (marker.getAnimation() !== null) marker.setAnimation(null);
+                else marker.setAnimation(google.maps.Animation.BOUNCE);
             }
             function clearMarker() {
-                if(marker) {
-                        marker.setMap(null);
-                    }
+                if(marker) marker.setMap(null);
                 marker = null;
             }
             function dropMarker() {
                 return function() {
                     marker.setMap(map);
+                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    marker.addListener('click', toggleBounce);
                 };
             }
             // Bias results towards geolocation
@@ -131,13 +131,13 @@
                     var geolocation = {
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
-                    };
+                    }
                     var circle = new google.maps.Circle({
                         center: geolocation,
                         radius: position.coords.accuracy
-                    });
+                    })
                     autocomplete.setBounds(circle.getBounds());
-                    });
+                    })
                 }
             }
           }
