@@ -11,12 +11,10 @@
     </head>
     <body style='background-color: lightblue'>
         <div id='root'></div>
-        <div id='map'></div>
-        <!-- <div id='legend'>
-            <h3>Legend (Customize)</h3>
-            <img src='/public/aqiLegend.png' alt='AQI Legend'/>
-        </div> -->
-        <script defer>
+        <div id='map-parent'>
+            <div id='map'></div>
+        </div>
+        <script>
           let map, infoWindow; 
           let marker = null;
           const markerIcon = 'https://developers.google.com/maps/documentation/javascript/images/marker_greenA.png';
@@ -50,7 +48,7 @@
                         position: place.geometry.location,
                         icon: markerIcon
                     });
-                    setTimeout(dropMarker(), 100);
+                    setTimeout(dropMarker(), 1);
                 } 
                 else document.getElementById('autocomplete').placeholder = 'Enter a city';
             }
@@ -146,5 +144,9 @@
           }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_API_KEY%>&libraries=places&callback=initMap" async defer></script>
+        <div id='legend'>
+            <h2>Legend</h2>
+            <img src='/public/aqiLegend.png' alt='AQI Legend'/>
+        </div>
     </body>
 </html>

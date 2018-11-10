@@ -1,15 +1,23 @@
 import React, { Component, Fragment } from 'react';
+import { HashRouter, Route } from 'react-router-dom';
+import AppBar from './AppBar';
+import Drawer from './Drawer';
+import DetailedLegend from './DetailedLegend';
 import Input from '@material-ui/core/Input';
-import AppBar from '@material-ui/core/AppBar';
+import InputAdornment from '@material-ui/core/InputAdornment'
+import Location from '@material-ui/icons/LocationOn';
+
 
 class App extends Component {
     render() {
         return(
-            <Fragment>
-                <AppBar>Air Quality Index</AppBar>
-                <img src='../../public/airQualityLevels.png' alt='Air Quality Levels Guide'/>
-                <Input id='autocomplete' placeholder='Enter a location!' type='text' fullWidth/>
-            </Fragment>
+            <HashRouter>
+                <Fragment>
+                    <AppBar/>
+                    <Drawer/>
+                    <Route path='/detailed-legend' render={ () => <DetailedLegend/> }/>
+                </Fragment>
+            </HashRouter>
         )
     }
 }
