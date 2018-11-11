@@ -51,7 +51,7 @@ const styles = theme => ({
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%',
+    width: '100%'
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
@@ -62,7 +62,7 @@ const styles = theme => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: 500
-    },
+    }
   },
 });
 
@@ -83,6 +83,7 @@ function SearchAppBar(props) {
             <InputBase
               id='autocomplete'
               placeholder='Check a location!'
+              spellCheck='false'
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
