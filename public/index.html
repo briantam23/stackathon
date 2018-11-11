@@ -49,6 +49,7 @@
 
             // Legend
             map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend'));
+            map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend-mobile'));
             
             // Air Quality
             const waqiMapOverlay = new google.maps.ImageMapType({
@@ -137,6 +138,9 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_API_KEY%>&libraries=places&callback=initMap" async defer></script>
         <div id='legend'>
             <img src='/public/aqiLegend.png' alt='AQI Legend'/>
+        </div>
+        <div id='legend-mobile'>
+            <img src='/public/aqiLegendMobile.png' alt='AQI Legend Mobile'/>
         </div>
     </body>
 </html>
