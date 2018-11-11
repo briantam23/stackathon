@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes, { element } from 'prop-types';
+import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from './AppBar';
@@ -37,33 +37,17 @@ const styles = theme => ({
   toolbar: theme.mixins.toolbar,
 });
 
-class ClippedDrawer extends Component {
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick(route) {
-    console.log(route, map)
-    const map = document.createElement('map');
-    const mapParent = document.getElementById('map-parent'); 
-    if(route === '/') {        
-        mapParent.appendChild(map);   
-    }
-    else mapParent.removeChild();
-  }
-  render() {
-    const { classes } = this.props;
-    const { handleClick } = this;
+const ClippedDrawer = ({ classes }) => {
     return (
         <div className={classes.root}>
-        <CssBaseline />
-        <Drawer
-            className={classes.drawer}
-            variant="permanent"
-            classes={{
-            paper: classes.drawerPaper,
-            }}
-        >
+            <CssBaseline />
+            <Drawer
+                className={classes.drawer}
+                variant="permanent"
+                classes={{
+                paper: classes.drawerPaper,
+                }}
+            >
             <div className={classes.toolbar} />
             <List>
                 <ListItem button key='Home' >
@@ -71,7 +55,7 @@ class ClippedDrawer extends Component {
                         <HomeIcon />
                     </ListItemIcon>
                     <Link to='/'>
-                        <ListItemText primary='Home' onClick={ () => handleClick('/') }/>
+                        <ListItemText primary='Home'/>
                     </Link>
                 </ListItem>
                 <ListItem button key='Detailed Legend' >
@@ -79,14 +63,13 @@ class ClippedDrawer extends Component {
                         <InfoIcon />
                     </ListItemIcon>
                     <Link to='/detailed-legend'>
-                        <ListItemText primary='Detailed Legend' onClick={ () => handleClick('/detailed-legend') }/>
+                        <ListItemText primary='Detailed Legend'/>
                     </Link>
                 </ListItem>
             </List>
-        </Drawer>
+            </Drawer>
         </div>
     )
-  }
 }
 
 ClippedDrawer.propTypes = {

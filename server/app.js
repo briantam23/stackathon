@@ -11,7 +11,6 @@ catch(ex) {
     console.log(ex);
 }
 
-app.use(require('body-parser').json());
 app.engine('html', ejs.renderFile);
 app.use('/public', express.static(path.join(__dirname, '../public')));
 app.get('/', (req, res) => {
@@ -20,7 +19,6 @@ app.get('/', (req, res) => {
         AIR_QUALITY_INDEX_KEY: process.env.AIR_QUALITY_INDEX_KEY
     })
 })
-
 
 
 module.exports = app;

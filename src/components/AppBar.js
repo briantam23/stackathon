@@ -24,8 +24,7 @@ const styles = theme => ({
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
-    },
-    marginLeft: '250px'
+    }
   },
   search: {
     position: 'relative',
@@ -62,10 +61,7 @@ const styles = theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: 300,
-      /* '&:focus': {
-        width: 200,
-      }, */
+      width: 500
     },
   },
 });

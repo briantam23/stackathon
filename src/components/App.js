@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { HashRouter, Route } from 'react-router-dom';
 import AppBar from './AppBar';
 import Drawer from './Drawer';
@@ -8,18 +8,10 @@ import InputAdornment from '@material-ui/core/InputAdornment'
 import Location from '@material-ui/icons/LocationOn';
 
 
-class App extends Component {
-    render() {
-        return(
-            <HashRouter>
-                <Fragment>
-                    <AppBar/>
-                    <Drawer/>
-                    <Route path='/detailed-legend' render={ () => <DetailedLegend/> }/>
-                </Fragment>
-            </HashRouter>
-        )
-    }
+const App = () => {
+    return(
+        <AppBar/>
+    )
 }
 
 export default App;
