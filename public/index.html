@@ -109,6 +109,7 @@
             }
             function clearMarker() {
                 if(marker) marker.setMap(null);
+                if(infoWindow) infoWindow.close();
                 marker = null;
             }
             function dropMarker() {
