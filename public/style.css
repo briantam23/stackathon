@@ -6,12 +6,20 @@ html, body {
     flex-direction: column;
     min-height: 100vh;
 }
+
 #map {
     flex-grow: 1;
 }
 
 #legend {
-    margin-left: 9px;
-    position: fixed;
-    bottom: 25px;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    #legend {
+        display: block;
+        margin-left: 9px;
+        position: fixed;
+        bottom: 25px;
+    }
 }
