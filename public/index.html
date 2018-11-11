@@ -118,7 +118,7 @@
             function dropMarker() {
                 return function() {
                     marker.setMap(map);
-                    marker.setAnimation(google.maps.Animation.BOUNCE);
+                    marker.setAnimation(google.maps.Animation.DROP);
                     marker.addListener('click', toggleBounce);
                 }
             }
