@@ -64,40 +64,37 @@ const styles = theme => ({
       width: 500
     }
   },
-});
+})
 
-function SearchAppBar(props) {
-  const { classes } = props;
-  return (
-    <div className={classes.root}>
-      <AppBar position="static" style={{backgroundColor: 'green', color: 'white'}}>
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-            <strong>Air Quality Index App</strong>
-          </Typography>
-          <div className={classes.grow} />
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <LocationIcon />
-            </div>
-            <InputBase
-              id='autocomplete'
-              placeholder='Check a location!'
-              spellCheck='false'
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
+const SearchAppBar = ({ classes }) => (
+  <div className={ classes.root }>
+    <AppBar position="static" style={{ backgroundColor: 'green', color: 'white' }}>
+      <Toolbar>
+        <Typography className={ classes.title } variant="h6" color="inherit" noWrap>
+          <strong>Air Quality Index App</strong>
+        </Typography>
+        <div className={ classes.grow } />
+        <div className={ classes.search }>
+          <div className={ classes.searchIcon }>
+            <LocationIcon />
           </div>
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
-}
+          <InputBase
+            id='autocomplete'
+            placeholder='Check a location!'
+            spellCheck='false'
+            classes={{
+              root: classes.inputRoot,
+              input: classes.inputInput,
+            }}
+          />
+        </div>
+      </Toolbar>
+    </AppBar>
+  </div>
+)
 
 SearchAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
-};
+}
 
 export default withStyles(styles)(SearchAppBar);
