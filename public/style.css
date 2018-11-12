@@ -15,7 +15,7 @@ html, body {
     display: none;
 }
 
-@media screen and (min-width: 824px) {
+@media screen and (min-width: 824px) and (min-height: 750px) {
     #legend {
         display: block;
         margin-left: 9px;
