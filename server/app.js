@@ -12,7 +12,9 @@ catch(ex) {
 }
 
 app.engine('html', ejs.renderFile);
+
 app.use('/public', express.static(path.join(__dirname, '../public')));
+
 app.get('/', (req, res) => {
     res.render(path.join(__dirname, '../public/index.html'), {
         GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
