@@ -33,7 +33,7 @@ function initMap() {
     }
 
     // Legend
-    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend'));
+    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend-computer'));
     map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById('legend-mobile'));
     
     // Air Quality

@@ -11,12 +11,12 @@ html, body {
     flex-grow: 1;
 }
 
-#legend {
+#legend-computer {
     display: none;
 }
 
 @media screen and (min-width: 824px) and (min-height: 750px) {
-    #legend {
+    #legend-computer {
         display: block;
         margin-left: 9px;
         position: fixed;
