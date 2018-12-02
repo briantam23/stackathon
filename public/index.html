@@ -4,13 +4,33 @@
         <title>Stackathon</title>
         <meta name='viewport' content='initial-scale=1.0'>
         <meta charset='utf-8'>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="//cdn.muicss.com/mui-0.9.41/css/mui.min.css" rel="stylesheet" type="text/css" />
+        <script src="//cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
         <link href='/public/style.css' rel='stylesheet'>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <script src='/public/bundle.js' defer></script>
     </head>
     <body>
-        <div id='root'></div>
+        <div class="mui-appbar">
+            <table class="table" cellspacing="0" cellpadding="0" width="100%">
+                <tr class="table-row">
+                    <td class="title">
+                        <h3>
+                            <strong>Air Quality Index App</strong>
+                        </h3>
+                    </td>
+                    <td class="mui--appbar-height" align="right">
+                        <input
+                            class="input"
+                            id='autocomplete'
+                            placeholder='Check a location!'
+                            spellCheck='false'
+                            autofocus
+                        />
+                    </td>
+                </tr>
+            </table>
+        </div>
         <div id='map'></div>
         <script src='/public/api.js' async defer></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%=GOOGLE_API_KEY%>&libraries=places&callback=initMap" async defer></script>

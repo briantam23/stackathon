@@ -5,37 +5,13 @@
   "main": "server/index.js",
   "scripts": {
     "start": "node ./server/index.js",
-    "postinstall": "npm run webpack",
-    "webpack": "./node_modules/webpack/bin/webpack.js",
-    "build": "npm run webpack -- --watch --mode=development",
-    "start:dev": "npm run build & DATABASE_URL=postgres://localhost/stackathon nodemon server/index.js --ignore dist --ignore src"
+    "postinstall": "npm run start"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "babel": {
-    "presets": [
-      "env",
-      "react",
-      "stage-3"
-    ]
-  },
   "dependencies": {
-    "@material-ui/core": "^3.4.0",
-    "@material-ui/icons": "^3.0.1",
     "ejs": "^2.6.1",
-    "express": "^4.16.3",
-    "react": "^16.5.0",
-    "react-dom": "^16.5.0"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.5",
-    "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
-    "webpack": "^4.17.2",
-    "webpack-cli": "^3.1.0"
+    "express": "^4.16.3"
   }
 }

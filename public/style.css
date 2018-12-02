@@ -99,3 +99,33 @@ html, body {
         bottom: 25px;
     }
 }
+
+.table {
+    border: none;
+}
+.table-row {
+    vertical-align: middle; 
+    position: static; 
+    background-color:green; 
+    color:white;
+}
+.title {
+    display: none;
+}
+@media screen and (min-width: 824px) {
+    .title {
+        display: block;
+        margin-left: 20px;
+        position: fixed;
+    }
+}
+.input {
+    margin-right: 30px;
+    width: 500px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 25px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
