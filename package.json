@@ -4,8 +4,7 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "start": "node ./server/index.js",
-    "postinstall": "npm install"
+    "start": "node ./server/index.js"
   },
   "keywords": [],
   "author": "",
