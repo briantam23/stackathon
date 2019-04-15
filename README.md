@@ -1,4 +1,4 @@
-# Air Quality Index App
+# 🌤 Air Quality Index App
 
 * Integrated the Google Maps API with AutoComplete & Geolocation along with the World Air Quality Index API's Map Overlay in order to display Air Quality Indexes around the world
 * Incorporated matching Material Design (also by Google) along with Flexbox to create a Single Page Application (SPA) with a user-friendly UI / UX
