@@ -1,5 +1,18 @@
 {
   "name": "stackathon-air-quality-app",
+  "author": { 
+    "name": "Brian Tam",
+    "email": "briantam23@gmail.com",
+    "url": "https://briantam23.github.io"
+  },
+  "contributors": [
+    {
+      "name": "Brian Tam",
+      "email": "briantam23@gmail.com",
+      "url": "https://briantam23.github.io"
+    }
+  ],
+  "homepage": "https://stackathon-btam.herokuapp.com/",
   "version": "1.0.0",
   "description": "",
   "main": "server/index.js",
