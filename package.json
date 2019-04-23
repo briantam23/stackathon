@@ -21,13 +21,18 @@
   },
   "main": "server/index.js",
   "scripts": {
-    "start": "node ./server/index.js"
+    "start": "node ./server/index.js",
+    "start:dev": "nodemon ./server/index.js"
   },
   "keywords": ["google-maps-api", "material-design", "media-queries", "express", "nodejs"],
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "11.2.0",
+    "npm": "6.5.0"
   },
   "heroku-run-build-script": true
 }
