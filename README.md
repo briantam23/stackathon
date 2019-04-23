@@ -22,6 +22,3 @@ This app requires a Google API Key & Air Quality Index Key (from https://aqicn.o
 * `npm install` (or `yarn install`)
 * `npm start`
 * open up [localhost:3000](http://localhost:3000) in a web browser
-
-
-* also deployed to [Heroku](https://stackathon-btam.herokuapp.com)
