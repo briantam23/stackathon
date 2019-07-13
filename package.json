@@ -1,6 +1,6 @@
 {
   "name": "stackathon-air-quality-app",
-  "author": { 
+  "author": {
     "name": "Brian Tam",
     "email": "briantam23@gmail.com",
     "url": "https://briantam23.github.io"
@@ -24,7 +24,13 @@
     "start": "node ./server/index.js",
     "start:dev": "nodemon ./server/index.js"
   },
-  "keywords": ["google-maps-api", "material-design", "media-queries", "express", "nodejs"],
+  "keywords": [
+    "google-maps-api",
+    "material-design",
+    "media-queries",
+    "express",
+    "nodejs"
+  ],
   "license": "ISC",
   "dependencies": {
     "ejs": "^2.6.1",
